@@ -1,9 +1,0 @@
-name=ESP8266 Framework
-version=1.0
-author=Coert Vonk
-maintainer=Coert Vonk
-sentence=Framework to ESP8266 programs (wificonfig, ota updates, fatal)
-paragraph=Framework for a ESP8266 program. Supports configuring SSID/passwd online, over the air updates, and saves stack traces to EEPROM.
-category=Other
-url=https://github.com/cvonk/ESP8266_Framework
-architectures=esp8266
