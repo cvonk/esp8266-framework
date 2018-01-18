@@ -1,0 +1,16 @@
+{
+    "name": "ESP8266 Framework",
+    "version": "1.0",
+    "keywords": "framework, ota, wificonfig, crash, exception, diagnostics",
+    "description": "Framework to ESP8266 programs (wificonfig, ota updates, fatal)",
+    "repository":
+    {
+        "type": "git",
+        "url": "https://github.com/cvonk/ESP8266_Framework.git"
+    },
+    "exclude": "extras",
+    "frameworks": "arduino",
+    "platforms": [
+        "espressif"
+    ]
+}
