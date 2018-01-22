@@ -33,34 +33,8 @@ configModeCallback (WiFiManager *myWiFiManager)
 }
 
 static void 
-handleRoot(void)
-{
-  Serial.println("handleRoot");
-    int const sec = millis() / 1000;
-    int const min = sec / 60;
-    int const hr = min / 60;
-
-    server.send( 200, "text/html",
-    F("<html>\n"
-        "<head>\n"
-        "    <meta name='viewport' content='width=device-width, initial-scale=1, minimum-scale=1.0 maximum-scale=1.0' />\n"
-        "</head>\n"
-        "<body>\n"
-        "  <style>\n"
-        "    body {width:100%;height:100%;margin:0;overflow:hidden;background-color:#252525;}\n"
-        "    #iframe {position:absolute;left:0px;top:0px;}\n"
-        "  </style>\n"
-        "  <h1>Page loading</h1>\n"
-        "  <iframe id='iframe' name='iframe1' frameborder='0' width='100%' height='100%' src='https://coertvonk.com/'></iframe>\n"
-        "</body>\n"
-        "</html>") );
-}
-
-static void 
 handleFatal(void)
 {
-  Serial.println("handleFatal");
-  // send response header to the web browser
   WiFiClient client = server.client();
   client.print(F("HTTP/1.1 200 OK\r\n"
            "Content-Type: text/plain\r\n"
@@ -68,19 +42,6 @@ handleFatal(void)
            "\r\n"));
   Fatal::print(client);  // send crash information to the web browser
   Fatal::clear();
-}
-
-static void 
-handleJson(void)
-{
-  Serial.println("handleJson");
-    for ( uint_least8_t ii = 0; ii < server.args(); ii++ ) {
-        Serial.printf( "%s=%s ", server.argName( ii ).c_str(), server.arg( ii ).c_str() );
-    }  
-    server.send(200, "text/plain", "OK");
-    //delay(1); // give the web browser time to receive the data
-    //server.stop();  // close the connection:
-    Serial.println("[Client disconnected]");
 }
 
 static void 
@@ -128,10 +89,10 @@ Framework::begin()
     ticker.attach(2, tick);
   }
   
-  // Be receiptive to over-the-air (OTA) updates
+  // Be receptive to over-the-air (OTA) updates
   {  
     ArduinoOTA.onStart([]() {
-      Serial.printf("\nOTA start %s", (ArduinoOTA.getCommand() == U_FLASH) ? "sketch" : "filesystem");
+      //Serial.printf("\nOTA start %s", (ArduinoOTA.getCommand() == U_FLASH) ? "sketch" : "filesystem");
     });
     ArduinoOTA.onEnd([]() {
       Serial.printf("\nOTA end\n");
